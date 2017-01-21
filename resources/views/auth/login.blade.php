@@ -44,6 +44,24 @@
         </div>
         <!--/Form with header-->
         </div>
+        <div class="col-md-8">
+            <!--Card-->
+                <div class="card-overlay">
+
+                    <!--Content-->
+                    <div class="white-text text-xs-center">
+                        <div class="card-block">
+                            <h5 class="teal-text"><i class="fa fa-pie-chart"></i> Marketing</h5>
+                            <h3>Project title</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit
+                                sed qui, dolorum!.</p>
+                            <a class="btn btn-lg btn-indigo btn-white-outline"><i class="fa fa-clone left"></i> View project</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            <!--/.Card-->
+        </div>
     </div>
 </div>
 @endsection

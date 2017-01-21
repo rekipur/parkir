@@ -15,7 +15,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
+
     <link href="{{ asset('/css/mdb.min.css') }}" rel="stylesheet">
+
+    <!-- Datatable -->
+    
+    <link href="{{ asset('/DataTables-1.10.13/media/css/jquery.dataTables.css') }}" rel="stylesheet">
+
 
     @if (Auth::guest())
     <style>
@@ -30,6 +36,13 @@
     </style>
     @endif
 
+    @if (Auth::user())
+    <style type="text/css">
+        body {
+            padding-top: 7%;
+        }
+    </style>
+    @endif
 
     <!-- Scripts -->
     <script>
@@ -113,14 +126,14 @@
                     <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-wrench"></i> Tools<i class="fa fa-angle-down rotate-icon"></i></a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a href="#" class="waves-effect">Available tools</a>
+                                <li><a href="{{ route('jenis_kendaraan.index') }}" class="waves-effect">Jenis Kendaraan</a>
                                 </li>
                                 <li><a href="#" class="waves-effect">Import</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-database"></i> Payments<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-database"></i> Master Data<i class="fa fa-angle-down rotate-icon"></i></a>
                         <div class="collapsible-body">
                             <ul>
                                 <li><a href="#" class="waves-effect">Products</a>
@@ -195,13 +208,16 @@
 
     </header>
     <!--/Double Navigation-->
-    @yield('content')
+        @include('layouts._flash')
+        @yield('content')
+
     <!-- Scripts -->
     <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('/js/tether.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/mdb.min.js') }}"></script>
-
+    <script src="{{ asset('/js/custom.js') }}"></script>
+    <script src="{{ asset('DataTables-1.10.13/media/js/jquery.dataTables.js') }}"></script>
     <script>
         $(".button-collapse").sideNav();
 
@@ -209,5 +225,6 @@
 
         Ps.initialize(el);
     </script>
+        @yield('scripts')
 </body>
 </html>

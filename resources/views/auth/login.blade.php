@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-8">
             <!--Card-->
-                <div class="card-overlay">
+                <div class="card-overlay hm-black-strong" style="background-image: url(http://data.whicdn.com/images/37473713/original.jpg); background-color: transparent;" >
 
                     <!--Content-->
                     <div class="white-text text-xs-center">

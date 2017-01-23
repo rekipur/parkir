@@ -1,6 +1,6 @@
 <div class="md-form{{ $errors->has('nama') ? 'has-error' : '' }}">
 	<i class="fa fa-th-large prefix"></i>
-	{!! Form::text('nama', null,['class'=>'form-control']) !!}
+	{!! Form::text('nama', null,['class'=>'form-control','readonly'=>'yes']) !!}
 	{!! Form::label('nama', 'Nama Jenis Kendaraan') !!}
 	{!! $errors->first('nama', '<p class="help-block">:message</p>') !!}
 </div>

@@ -12,7 +12,7 @@
 			    </div>
 			    <div class="card-block">			    
 			        <div class="table-responsive">
-						<a href="{{ route('jenis_kendaraan.create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>&nbsp; Jenis Kendaraan</a>
+						<!--<a href="{{ route('jenis_kendaraan.create') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i>&nbsp; Jenis Kendaraan</a>-->
 			        	{!! $html->table(['class'=>'table table-striped']) !!}
 			        </div>
 			        

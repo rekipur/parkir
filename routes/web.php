@@ -19,9 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::post('/ajax', 'MasukController@ajax');
+
+Route::post('/cek', 'MasukController@cek');
 
 Route::group(['middleware'=>'web'], function (){
 	Route::group(['middleware'=>['auth','role:admin']], function () {
 		Route::resource('jenis_kendaraan', 'JkendaraanController');
+		Route::resource('masuk', 'MasukController');
 	});	
 });

@@ -22,6 +22,9 @@
     
     <link href="{{ asset('/DataTables-1.10.13/media/css/jquery.dataTables.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/selectize.bootstrap3.css') }}" rel="stylesheet">
 
     @if (Auth::guest())
     <style>
@@ -75,20 +78,12 @@
             <!-- Side navigation links -->
             <li>
                 <ul class="collapsible collapsible-accordion">
-                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-paint-brush"></i> Appearance<i class="fa fa-angle-down rotate-icon"></i></a>
+                    <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-paint-brush"></i> Operasi<i class="fa fa-angle-down rotate-icon"></i></a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a href="#" class="waves-effect">Themes</a>
+                                <li><a href="{{ route('masuk.index') }}" class="waves-effect">Masuk</a>
                                 </li>
-                                <li><a href="#" class="waves-effect">Customize</a>
-                                </li>
-                                <li><a href="#" class="waves-effect">Widgets</a>
-                                </li>
-                                <li><a href="#" class="waves-effect">Menus</a>
-                                </li>
-                                <li><a href="#" class="waves-effect">Theme settings</a>
-                                </li>
-                                <li><a href="#" class="waves-effect">Editor</a>
+                                <li><a href="#" class="waves-effect">Keluar</a>
                                 </li>
                             </ul>
                         </div>
@@ -176,13 +171,10 @@
                     </li>-->
                 @else
                 <li class="nav-item ">
-                    <a class="nav-link"><i class="fa fa-envelope"></i> <span class="hidden-sm-down">Contact</span></a>
+                    <a class="nav-link" href="{{ url('/home') }}"><i class="fa fa-home"></i> <span class="hidden-sm-down">Home</span></a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link"><i class="fa fa-comments-o"></i> <span class="hidden-sm-down">Support</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link"><i class="fa fa-user"></i> <span class="hidden-sm-down">Account</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
@@ -213,17 +205,94 @@
 
     <!-- Scripts -->
     <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
+
     <script src="{{ asset('/js/tether.min.js') }}"></script>
+
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+
     <script src="{{ asset('/js/mdb.min.js') }}"></script>
+
     <script src="{{ asset('/js/custom.js') }}"></script>
+
     <script src="{{ asset('DataTables-1.10.13/media/js/jquery.dataTables.js') }}"></script>
+
+    <script src="{{ asset('js/selectize.js') }}"></script>
+    
     <script>
         $(".button-collapse").sideNav();
 
         var el = document.querySelector('.custom-scrollbar');
 
         Ps.initialize(el);
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //icon hide in operating function
+        $("#dua").hide();
+        $("#empat").hide();
+    
+        $("#jenis").change(function(){
+
+        var jenis = $("#jenis").val();
+
+        if (jenis == 1) {
+            $("#dua").show();
+            $("#empat").hide();
+        }
+        else if (jenis == 2) {
+            $("#dua").hide();
+            $("#empat").show();
+        }
+        else {
+            $("#dua").hide();
+            $("#empat").hide();
+        }
+
+        }); 
+        
+    });
+    
+    </script>
+    <script type="text/javascript">
+         $("#kode_parkir").change(function(){
+
+                    var kode = $('#kode_parkir').val();
+
+                           $.post('{{ url('/cek') }}',
+                        {
+                            '_token': $('meta[name=csrf-token]').attr('content'),
+                            kode:kode },function(data){
+                                  $('#pivot').val(data);
+
+                        });
+                });
+    </script>
+    <script type="text/javascript">
+    function masuk() {
+            var jenis = $("#jenis").val();
+            var kode_parkir = $("#kode_parkir").val();
+            var keterangan = $("#keterangan").val();
+            var pivot = $("#pivot").val();
+
+            if (jenis == '' || kode_parkir =='') {
+                toastr["warning"]("Isi Field Dengan Benar!");
+            }
+            else if (pivot != '') {
+                toastr["warning"]("Kode Parkir Sudah Ada!");
+                $("#kode_parkir").focus();                
+            }
+            else{
+                       $.post('{{ url('/ajax') }}',
+                    {
+                        '_token': $('meta[name=csrf-token]').attr('content'),
+                        jenis:jenis,kode_parkir:kode_parkir,keterangan:keterangan },function(data){
+                 
+                    });
+
+                       location.reload(true);
+                }
+
+    }
     </script>
         @yield('scripts')
 </body>

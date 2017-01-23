@@ -23,7 +23,7 @@ class JkendaraanController extends Controller
             $jks = JK::select(['id','nama','deskripsi']);
             return Datatables::of($jks)
             ->addColumn('aksi', function($jk){
-                return view('datatable._aksi',[
+                return view('datatable._jk',[
                     'model' => $jk,
                     'form_url' => route('jenis_kendaraan.destroy', $jk->id),
                     'edit_url' => route('jenis_kendaraan.edit', $jk->id),
